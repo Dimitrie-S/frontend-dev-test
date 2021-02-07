@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import '../styles/Card.css'
+
 function Card(props) {
   var image = {
     backgroundImage: "url(" + props.image + ")",

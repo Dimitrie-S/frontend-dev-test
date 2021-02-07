@@ -31,7 +31,7 @@ class App extends Component {
     var cards = this.state.cards;
     if (isLoaded) {
       return (
-        <div>
+        <div style={{display:"flex", flexWrap:"wrap", justifyContent:"center"}}>
           {cards.map((item, index) => (
             <Card
               key={index}
