@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import Card from "./components/Card";
+import Pagination from "./components/Pagination";
 
 class App extends Component {
   state = {
     cards: [],
     isLoaded: false,
+    error: false,
   };
 
   componentDidMount = () => {
+    // Fetching the data
     fetch("http://www.blackbullion.com/_dev/api/lessons")
       .then((res) => res.json())
       .then(
@@ -19,8 +21,7 @@ class App extends Component {
         },
         (error) => {
           this.setState({
-            isLoaded: true,
-            error,
+            error: true,
           });
           console.log(error);
         }
@@ -29,19 +30,18 @@ class App extends Component {
   render() {
     var isLoaded = this.state.isLoaded;
     var cards = this.state.cards;
+    if (this.state.error) {
+      return (
+        <div>
+          Something went wrong, please make sure you have disabled Cross-Origin
+          restrictions in your browser.
+        </div>
+      );
+    }
     if (isLoaded) {
       return (
-        <div style={{display:"flex", flexWrap:"wrap", justifyContent:"center"}}>
-          {cards.map((item, index) => (
-            <Card
-              key={index}
-              title={item.title}
-              image={item.image}
-              description={item.description}
-              url={item.url}
-              duration={item.duration}
-            />
-          ))}
+        <div>
+          <Pagination cards={cards} />
         </div>
       );
     } else {

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import '../styles/Card.css'
+import "../styles/Card.css";
 
 function Card(props) {
   var image = {
@@ -24,7 +24,6 @@ function Card(props) {
         {description}
         {props.description.length > 199 && <span>...</span>}
       </p>
-
       <div className="card-go">
         <a href={props.url} className="card-link">
           Start pathway &#8594;
